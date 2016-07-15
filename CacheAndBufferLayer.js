@@ -485,7 +485,9 @@ function flush (db, callback)
       //set the writingInProgress flag to false
       for(var i in operations)
       {
-        db.buffer[operations[i].key].writingInProgress = false;
+        if (operations[i].key !== undefined) {
+          db.buffer[operations[i].key].writingInProgress = false;
+        }
       }
       
       if(callback) callback();
